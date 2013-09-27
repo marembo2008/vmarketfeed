@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>
+            <ui:insert name="title">Default title</ui:insert>
+        </title>
+        <style type="text/css">
+            .ui-tabs-panels {
+                margin: 0 auto;
+                position: relative;
+            }
+            .ui-datatable-data {
+                margin: 0 auto;
+            }
+            .ui-treetable thead th, .ui-treetable tbody td, .ui-treetable tfoot td {
+                white-space: normal !important;
+            }
+        </style>
+    </h:head>
+    <h:body >
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <div align="right">
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <h:outputText value="Logged On:  #{loginManager.currentSessionUser}" style="font-size: 10px;"/>
+                            <h:commandLink value="Log Out"  action="#{loginManager.toLogin()}" style="font-size: 10px;"/>
+                            <h:commandLink value="Create New User" rendered="#{loginManager.administrator}" action="#{loginManager.doCreateUser}" style="font-size: 10px;"/>
+                        </h:panelGrid>
+                    </h:form>
+                </div>
+            </ui:insert>
+        </div>
+        <div id="header" class="left_content_header">
+            <ui:insert name="header">
+                <div align="right">
+                    <h:panelGrid columns="3" id="menu">
+                        <p:button value="Home" style="color: red;border-width: thick;" outcome="#{navManager.home}"/>
+                        <p:button value="Configurations" style="color: red;border-width: thick;" outcome="#{navManager.property}"/>
+                        <p:button value="Contact Us" style="color: red;border-width: thick;" outcome="#{navManager.contactUs}" />
+                    </h:panelGrid>
+                </div>
+            </ui:insert>
+        </div>
+        <div>
+            <div id="content" class="center_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+            <div id="bottom_white" class="bottom_white" align="center">
+                <ui:insert name="bottom">Copyright Variance Africa #{loginManager.currentYear}</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

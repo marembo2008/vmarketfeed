@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+  <ui:composition>
+    <h:panelGrid columns="1">
+      <p:tabView activeIndex="#{dataViewer.activeIndex}" cache="false" dynamic="true">
+        <p:ajax event="tabChange" listener="#{dataViewer.onTabChanged}" process="@this" partialSubmit="true"/>
+        <p:tab id="fx-deals" title="Forex Deals {#{dataViewer.currentFXDeals.size()}}">
+          <ui:include src="fx-deal-records.xhtml"/>
+        </p:tab>
+        <p:tab id="mm-deals" title="Money Market Deals {#{dataViewer.currentMMDeals.size()}}">
+          <ui:include src="mm-deal-records.xhtml"/>
+        </p:tab>
+      </p:tabView>
+    </h:panelGrid>
+  </ui:composition>
+</html>
+

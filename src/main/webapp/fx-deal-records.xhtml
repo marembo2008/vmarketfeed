@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+  <ui:composition>
+    <table style="width: 100%; overflow-x: auto">
+      <thead>
+        <tr>
+          <ui:repeat value="#{dataViewer.fxColumns}" var="c">
+            <th style="background: #aaa; padding: 10px">#{c.firstValue}</th>
+          </ui:repeat>
+        </tr>
+      </thead>
+      <tbody>
+        <ui:repeat value="#{dataViewer.currentFXDeals}" var="deals">
+          <tr>
+            <ui:repeat value="#{deals}" var="d">
+              <td style="background: white; padding: 2px 10px">#{d.value}</td>
+            </ui:repeat>
+          </tr>
+        </ui:repeat>
+      </tbody>
+    </table>
+  </ui:composition>
+</html>

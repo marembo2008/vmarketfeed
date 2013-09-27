@@ -1,0 +1,204 @@
+
+#top {
+  position: relative;
+  background-color: #036fab;
+  color: white;
+  padding: 5px;
+  margin: 0px 0px 10px 0px;
+  background-image: url('../TofLogo.png');
+  min-height: 70px;
+}
+#top_inset {
+  position: relative;
+  color: black;
+}
+
+#bottom {
+  position: relative;
+  background-color: #dddddd; 
+  padding: 5px;
+  margin: 10px 0px 0px 0px;
+}
+#bottom_colorless {
+  position: relative;
+  padding: 5px;
+  margin: 10px 0px 0px 0px;
+}
+#bottom_white {
+  bottom: auto;
+  position: relative;
+  background-color: #effffe;
+  padding: 5px;
+  margin: 10px 0px 0px 0px;
+}
+
+#left {
+  float: left;
+  background-color: #ddddff;
+  padding: 8px;
+  width: 170px;
+  min-height: 426px;
+}
+#left_expanded {
+  float: left;
+  background-color: #ddddff;
+  padding: 8px;
+  width: 370px;
+  min-height: 520px;
+}
+
+#left_1 {
+  float: left;
+  background-color: #ddddff;
+  padding: 8px;
+  width: 420px;
+}
+
+#left_inset {
+  float: left;
+  padding: 8px;
+}
+
+#right {
+  float: right;
+  background-color: #ddddff;
+  padding: 8px;
+  width: 170px;
+  min-height: 520px;
+}
+#right_1 {
+  float: right;
+  padding: 5px;
+  width: 150px;
+}
+
+.size{
+  width: 170px;
+  text-align: left;
+}
+
+.center_content {
+  position: relative;
+  background-color: #dddddd;
+  padding: 5px;
+}
+.center_content_left {
+  position: relative;
+  background-color: #dddddd;
+  padding: 5px;
+  min-width: 1030px;
+  min-height: 450px;
+}
+.center_content_body {
+  position: relative;
+  background-color: #effffe;
+  padding: 5px;
+}
+.center_content_inset {
+  position: relative;
+}
+
+.left_content {
+  position: relative;
+  padding: 5px;
+  background-color: #dddddd;
+  margin-left: 200px;
+  min-height: 426px;
+  min-width: 400px;
+}
+.left_content_minimized {
+  position: relative;
+  padding: 5px;
+  background-color: #dddddd;
+  margin-left: 400px;
+  min-height: 525px;
+}
+
+.left_content_header {
+  position: relative;
+  padding: 5px;
+  border-style: outset;
+  background-color: #ddddff;
+  max-height: 546px;
+  margin-bottom: 10px;
+}
+.left_content_1 {
+  background-color: #dddddd;
+  padding: 5px;
+  margin-left: 170px;
+  height: 576px;
+}
+
+.right_content {
+  background-color: #dddddf;
+  padding: 5px;
+  margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+.column_props {
+  height: 30px;
+  width: 200px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 10pt;
+}
+.column_props_1 {
+  height: 30px;
+  width: 300px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 10pt;
+}
+.column_props_2 {
+  height: 30px;
+  width: 350px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 10pt;
+}
+
+.list_props {
+  width: 140px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.odd_rows {
+  background-color: #e7fbfe;
+  color: #e75ffb;
+}
+.even_rows {
+  background-color: green;
+  color: red;
+}
+.blue{
+  color: blue;
+}
+#blue_rows{
+  color: blue;
+}
+.header{
+  font-size: 9px;
+}
+
+.scroll{
+  height:100px;
+  overflow:auto;
+  margin:0; padding:5px; border:0;
+  text-align:justify;
+  background-color: #E1F2FB;
+}
+
+

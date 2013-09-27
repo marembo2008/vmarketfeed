@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Contact Us</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+    </h:head>
+    <h:body>
+        <ui:composition template="MainTemplate_1.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <div align="center" >
+                        <h1 style="color: green;">
+                            Contact Form
+                        </h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Full Names/Business Names:" for="nameId"/>
+                            <h:inputText id="nameId" value="#{loginManager.contactInformation.name}" size="39"/>
+                            <h:outputLabel value="Telephone/Mobile:" for="phoneId"/>
+                            <h:inputText id="phoneId" value="#{loginManager.contactInformation.phoneNumber}"  size="39"/>
+                            <h:outputLabel value="Email Address:" for="emailId"/>
+                            <h:inputText id="emailId" value="#{loginManager.contactInformation.emailAddress}" size="39"/>
+                            <h:outputLabel value="Request:" for="requestId"/>
+                            <h:inputTextarea id="requestId" value="#{loginManager.contactInformation.requestInformation}" rows="6" cols="31"/>
+                            <div align="right">
+                                <h:commandButton value="Send Request" action="#{loginManager.sendQuery}" id="_sendButton"/>
+                                <h:message for="_sendButton"/>
+                            </div>
+                        </h:panelGrid>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

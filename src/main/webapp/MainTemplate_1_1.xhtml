@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title></title><script type="text/JavaScript">
+            function timedRefresh(timeoutPeriod) {
+                    setTimeout("location.reload(true);",timeoutPeriod);
+            }
+        </script>
+    </h:head>
+    <h:body onload="JavaScript:timedRefresh(1000000);">
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <div align="right">
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <h:outputText value="Logged On:  #{loginManager.currentSessionUser}" style="font-size: 10px;"/>
+                            <h:commandLink value="Log Out" style="font-size: 10px;"   action="#{loginManager.toLogin}" />
+                            <h:commandLink value="Create New User" rendered="#{loginManager.administrator}" action="#{loginManager.doCreateUser}" style="font-size: 10px;"/>
+                        </h:panelGrid>
+                    </h:form>
+                </div>
+            </ui:insert>
+        </div>
+        <div>
+            <div id="header" class="left_content_header">
+                <ui:insert name="header">
+                    <h:form>
+                        <div align="right">
+                            <h1 >
+                                <h:panelGrid columns="3">
+                                    <h:commandLink value="Home" style="color: red;border-width: thick;" action="#{navManager.toHome}"/>
+                                    <h:commandLink value="Configurations" style="color: red;border-width: thick;" action="#{navManager.toProperty}"/>
+                                    <h:commandLink value="Contact Us" style="color: red;border-width: thick;" action="#{navManager.toContactUs}"/>
+                                </h:panelGrid>
+                            </h1>
+                        </div>
+                    </h:form>
+                </ui:insert>
+            </div>
+            <div id="content" class="center_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>

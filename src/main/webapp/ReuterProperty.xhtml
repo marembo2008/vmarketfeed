@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="MainTemplate_2.xhtml">
+        <ui:define name="title">TOF Marketfeed Configurations</ui:define>
+        <ui:define name="content">
+            <style type="text/css">
+                .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td{
+                    white-space: normal !important;
+                }
+            </style>
+            <p:growl autoUpdate="true"/>
+            <p:tabView style="position: relative" activeIndex="#{property.activeTab}">
+                <p:ajax event="tabChange" listener="#{property.onTabChanged}"/>
+                <p:tab id="generalProperties" title="General Properties">
+                    <h:form>
+                        <!-- Create a table for manipulating the column record id-->
+                        <p:treeTable  value="#{property.properties}"
+                                      var="elem"
+                                      tableStyleClass="#{elem.parent ? 'odd_rows' : null}">
+                            <f:facet name="header">
+                                <div align="right">
+                                    <p:commandButton ajax="false"
+                                                     value="Reload"
+                                                     action="#{property.reloadProperties()}"
+                                                     style="width: 80px; margin-right: 20px"/>
+                                    <p:commandButton ajax="false"
+                                                     value="update"
+                                                     action="#{property.updateGeneralProperties()}"
+                                                     style="width: 80px;"/>
+                                </div>
+                            </f:facet>
+                            <p:column style="width: 25%" headerText="Property">
+                                <h:outputText value="#{elem}"/>
+                            </p:column>
+                            <p:column style="width: 55%" headerText="Description">
+                                <h:outputText value="#{elem.comment}"/>
+                            </p:column>
+                            <p:column style="width: 20%" headerText="Value">
+                                <h:panelGrid rendered="#{elem.contentOnly}">
+                                    <h:inputText id="elemValueId"
+                                                 value="#{elem.content}" rendered="#{not elem.constantValue}"/>
+                                    <h:outputText rendered="#{elem.constantValue}"
+                                                  value="#{elem.content}" style="color: red;"/>
+                                </h:panelGrid>
+                            </p:column>
+                        </p:treeTable>
+                    </h:form>
+                </p:tab>
+                <p:tab id="mmMapping" title="MM Column Mapping">
+                    <!-- Create a table for manipulating the column record id-->
+                    <h:form>
+                        <p:dataTable  value="#{property.moneyMarketColumnRecords}"
+                                      var="mm"
+                                      rows="10"
+                                      paginator="true">
+                            <f:facet name="header">
+                                <div align="right">
+                                    <p:commandButton ajax="false" value="update"
+                                                     action="#{property.update()}"
+                                                     style="width: 80px;"/>
+                                </div>
+                            </f:facet>
+                            <p:column style="min-width: 20%" headerText="TOF Data Index">
+                                <h:outputText value="#{mm.secondValue.dataIndex}"/>
+                            </p:column>
+                            <p:column style="min-width: 15%" headerText="TOF Data Name">
+                                <h:outputText value="#{mm.secondValue.dataName}"/>
+                            </p:column>
+                            <p:column style="min-width: 10%" headerText="Column Index">
+                                <h:inputText id="MMcolumnIndexId" value="#{mm.columnIndex}" style="width: 100%"
+                                             validator="#{property.mmValidator}"/>
+                            </p:column>
+                            <p:column style="min-width: 25%" headerText="Data Source Mapping">
+                                <h:inputText id="MMmappedName" value="#{mm.firstValue}"  style="width: 100%"/>
+                            </p:column>
+                            <p:column style="min-width: 20%" headerText="Data Default Value">
+                                <p:inputText id="MMdefaultValue" value="#{mm.defaultValue}"  style="width: 100%"/>
+                            </p:column>
+                            <p:column style="min-width: 10%" headerText="Always Use Default Value">
+                                <h:selectBooleanCheckbox id="MMalwaysUseDefaultValue"
+                                                         value="#{mm.alwaysUseDefaultValue}"  style="width: 100%"/>
+                            </p:column>
+                            <p:column style="min-width: 10%" headerText="Sequential (Must be Default)">
+                                <h:selectBooleanCheckbox id="sequentialColumn"
+                                                         value="#{mm.sequential}"  style="width: 100%"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:tab>
+                <p:tab id="fxMapping" title="FX Column Mapping">
+                    <!-- Create a table for manipulating the column record id-->
+                    <h:form>
+                        <p:dataTable  value="#{property.foreignExchangeColumnRecords}"
+                                      var="fx"
+                                      rows="10"
+                                      paginator="true">
+                            <f:facet name="header">
+                                <div align="right">
+                                    <p:commandButton ajax="false" value="update"
+                                                     action="#{property.update()}"
+                                                     style="width: 80px;"/>
+                                </div>
+                            </f:facet>
+                            <p:column style="min-width: 20%" headerText="TOF Data Index">
+                                <h:outputText value="#{fx.secondValue.dataIndex}"/>
+                            </p:column>
+                            <p:column style="min-width: 15%" headerText="TOF Data Name">
+                                <h:outputText value="#{fx.secondValue.dataName}"/>
+                            </p:column>
+                            <p:column style="min-width: 10%" headerText="Column Index">
+                                <h:inputText  value="#{fx.columnIndex}" style="width: 100%"
+                                              validator="#{property.fxValidator}"/>
+                            </p:column>
+                            <p:column style="min-width: 25%" headerText="Data Source Mapping">
+                                <h:inputText value="#{fx.firstValue}"  style="width: 100%"/>
+                            </p:column>
+                            <p:column style="min-width: 20%" headerText="Data Default Value">
+                                <p:inputText  value="#{fx.defaultValue}"  style="width: 100%"/>
+                            </p:column>
+                            <p:column style="min-width: 10%" headerText="Always Use Default Value">
+                                <h:selectBooleanCheckbox
+                                    value="#{fx.alwaysUseDefaultValue}"  style="width: 100%"/>
+                            </p:column>
+                            <p:column style="min-width: 10%" headerText="Sequential (Must be Default)">
+                                <h:selectBooleanCheckbox id="sequentialColumn"
+                                                         value="#{fx.sequential}"  style="width: 100%"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+            <p:dialog id="errorDialog" modal="true" header="Column Index Error"
+                      widgetVar="dIndexError" rendered="#{property.indexError}" showEffect="explode" hideEffect="explode">
+                <h:outputText id="messageText" value="#{property.message}" style="background: red;"/>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+</html>
+
