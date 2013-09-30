@@ -249,7 +249,7 @@ public class VMarketfeedProtocolService implements VDataManager {
         //if an exception occurs, lets not update the deal listeners to.
         dealingManager.handleDeal(d);
         reuter.getReuterProperties().getTicketRequestCriterion().setFromTicketId(deal.getFirstValue());
-        reuter.doUpdate(); //we do asynchronous update here.steners
+        reuter.doUpdate(); //we do asynchronous update here
         updateDealListeners(d);
       }
     } catch (Exception e) {

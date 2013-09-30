@@ -5,25 +5,23 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
   <ui:composition>
-    <table style="width: 100%; overflow-x: auto">
-      <thead>
-        <tr>
-          <ui:repeat value="#{dataViewer.fxColumns}" var="c">
-            <th style="background: #aaa; padding: 10px">#{c.firstValue}</th>
-          </ui:repeat>
-        </tr>
-      </thead>
-      <tbody>
-        <ui:repeat value="#{dataViewer.currentFXDeals}" var="deals">
-          <tr>
-            <ui:repeat value="#{deals}" var="d">
-              <td style="background: white; padding: 2px 10px">#{d.value}</td>
-            </ui:repeat>
-          </tr>
-        </ui:repeat>
-      </tbody>
-    </table>
+    <style type="text/css">
+      .ui-datatable .ui-paginator, .ui-datatable .ui-paginator {
+        text-align: left;
+      }
+    </style>
+    <p:dataTable value="#{dataViewer.currentFXDeals}" var="dr" style="width: 100%"
+                 paginator="true" paginatorAlwaysVisible="false" rows="10" rowIndexVar="ri">
+      <p:columns value="#{dataViewer.fxColumns}" var="cn" columnIndexVar="ci">
+        <f:facet name="header">
+          #{cn.firstValue}
+        </f:facet>
+        #{dataViewer.getFXDealRecord(ri, ci).getValue()}
+      </p:columns>
+    </p:dataTable>
   </ui:composition>
 </html>

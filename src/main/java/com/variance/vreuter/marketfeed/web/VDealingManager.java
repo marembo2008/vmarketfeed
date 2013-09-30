@@ -87,16 +87,17 @@ public class VDealingManager implements Serializable, VMarketfeedListener {
     String dealTypeStr = forwardedDeal.getSecondValue().getSecondValue().get(recordType.getDataIndex());
     if (dealTypeStr == null) {
       return;
+      
     }
     int _dealType_ = Integer.parseInt(dealTypeStr);
     VDealType dealType = databaseConfiguration.findDealTypeInstance(_dealType_);
     VTableConfiguration vtc;
     List<VDealRecord> records = new ArrayList<VDealRecord>();
     if (dealType.isMoneyMarketDeal()) {
-      currentMMDeals.add(records);
+      currentMMDeals.add(0, records);
       vtc = databaseConfiguration.getTableConfiguration(VDataSourceConfiguration.MM_TABLE_CONFIG_NAME);
     } else {
-      currentFXDeals.add(records);
+      currentFXDeals.add(0, records);
       vtc = databaseConfiguration.getTableConfiguration(VDataSourceConfiguration.FX_TABLE_CONFIG_NAME);
     }
     //ticket id is not supplied by the map.
@@ -146,6 +147,14 @@ public class VDealingManager implements Serializable, VMarketfeedListener {
 
   public List<List<VDealRecord>> getCurrentMMDeals() {
     return currentMMDeals;
+  }
+
+  public VDealRecord getFXDealRecord(int row, int column) {
+    return getCurrentFXDeals().get(row).get(column);
+  }
+
+  public VDealRecord getMMDealRecord(int row, int column) {
+    return getCurrentMMDeals().get(row).get(column);
   }
 
   public synchronized List<List<VDealRecord>> getCurrentFXDeals() {
